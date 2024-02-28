@@ -30,7 +30,7 @@ class Program
         int max = numbers.Max();
         int min = numbers.Min();
         Console.WriteLine($"The sum of the numbers is: {sum}");
-        Console.WriteLine($"The avverage of the list is: {average}");
+        Console.WriteLine($"The average of the list is: {average}");
         Console.WriteLine($"The largest integer is {max}");
         Console.WriteLine($"The smallest number is {min}");
         
