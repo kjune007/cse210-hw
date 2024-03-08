@@ -39,7 +39,7 @@ class Program
             _newEntry._date = _datestring;
             _newEntry._prompt = prompt1._prompts.ElementAt(prompt1._random);
             _newEntry._entry = Console.ReadLine(); 
-            journal1._journalEntries.Add($"{_newEntry._date} -- {_newEntry._prompt}, {_newEntry._entry}"); 
+            journal1._journalEntries.Add($"{_newEntry._date} -- Prompt: {_newEntry._prompt} -- {_newEntry._entry}"); 
             return true;
 
             case "2":
@@ -47,7 +47,20 @@ class Program
             return true;
 
             case "3":
+            string fileName1 = "Journal.txt";
+            string[] lines = System.IO.File.ReadAllLines(fileName1);
 
+            foreach (string line in lines)
+            {
+                string[] parts = line.Split("--");
+                Entry loadEntry = new Entry();
+                loadEntry._date = parts[0];
+                loadEntry._prompt = parts[1];
+                loadEntry._entry = parts[2];
+                Journal loadJournal = new Journal();
+                loadJournal._journalEntries.Add($"{loadEntry._date} -- {loadEntry._prompt} -- {loadEntry._entry}");
+                loadJournal.Display();
+            }
             return true;
 
             case "4":
