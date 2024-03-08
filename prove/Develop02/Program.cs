@@ -23,11 +23,10 @@ class Program
         Console.WriteLine("5. Quit");
         Console.Write("What would you like to do? ");
         string userInput = Console.ReadLine();
-        int i = int.Parse(userInput);
 
-        switch(i)
+        switch(userInput)
         {
-            case 1:
+            case "1":
             DateTime _dateTime = DateTime.Now;
             Random _r = new Random();
             Prompt prompt1 = new Prompt();
@@ -43,15 +42,15 @@ class Program
             journal1._journalEntries.Add($"{_newEntry._date} -- {_newEntry._prompt}, {_newEntry._entry}"); 
             return true;
 
-            case 2:
+            case "2":
             journal1.Display();
             return true;
 
-            case 3:
+            case "3":
 
             return true;
 
-            case 4:
+            case "4":
             string fileName = "Journal.txt";
             using (TextWriter tw = new StreamWriter(fileName))
             {
@@ -62,7 +61,7 @@ class Program
             }
              return true;
 
-            case 5:
+            case "5":
             return false;
                 
             default:
