@@ -1,14 +1,25 @@
 public class Word
 {
-    public string _word;
+    private string _word;
+    private bool _flag;
 
     public Word()
     {
     }
 
-    public string GetWord(int _stringVarable)
+    public Word(string _setword, bool _setflag)
     {
-        if (_stringVarable == 0)
+        _word = _setword;
+        _flag = _setflag;
+    }
+
+    public bool CheckFlag()
+    {
+        return _flag;
+    }
+    public string GetWord()
+    {
+        if (_flag == true)
         {   
             return _word;
         }
