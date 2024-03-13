@@ -16,6 +16,7 @@ class Program
 
     public static bool MainMenu()
     {
+        Console.WriteLine("");
         Console.WriteLine("Press Enter to continue or type 'quit' to quit");
 
         string input = ReadUserInput();
@@ -23,14 +24,16 @@ class Program
         switch(input)
         {
             case "1":
-            Console.WriteLine("Option 1. you pressed enter:");
+            CreateScripture();
             return true;
 
             case "2":
+            Console.Clear();
             Console.WriteLine("Option 2. You typed 'quit' ");
             return false;
 
             case "3":
+            Console.Clear();
             Console.WriteLine("Option 3. Please select a valid option");
             return true;
 
@@ -67,4 +70,21 @@ class Program
         }
     }
 
-}   
+    public static void CreateScripture()
+    {
+        Console.Clear();
+        Scripture _newScripture = new Scripture();
+        List<string> scripture = _newScripture.GetScripture();
+        
+        for (int i = 0; i < scripture.Count(); i++)
+        {
+            Word scriptureWord = new Word();
+            string word = scripture[i];
+            scriptureWord._word = word;
+            string displayWord = scriptureWord.GetWord(true);
+            Console.Write($"{displayWord} ");
+
+        }
+    Console.WriteLine("");
+    }
+}
