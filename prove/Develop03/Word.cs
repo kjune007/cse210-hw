@@ -6,9 +6,9 @@ public class Word
     {
     }
 
-    public string GetWord(bool _stringVarable)
+    public string GetWord(int _stringVarable)
     {
-        if (_stringVarable == true)
+        if (_stringVarable == 0)
         {   
             return _word;
         }
