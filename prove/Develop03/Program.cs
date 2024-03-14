@@ -10,16 +10,15 @@ class Program
     static void Main(string[] args)
     {
         CreateScripture(0);
-        int _loopcount = 0;
         bool _continue = true;
         while(_continue)
         {
-            _continue = MainMenu(_loopcount);
+            _continue = MainMenu();
         }
 
     }
 
-    public static bool MainMenu(int _loopcount)
+    public static bool MainMenu()
     {
         Console.WriteLine("");
         Console.WriteLine("Press Enter to continue or type 'quit' to end the program");
@@ -29,14 +28,14 @@ class Program
         switch(input)
         {
             case "1":    
-            MemorizeScripture(_loopcount);
-            return true;
+            bool _menuFlag = MemorizeScripture();
+            return _menuFlag;
                 
 
             case "2":
             Console.Clear();
             Console.WriteLine("Program Terminated ");
-            System.Threading.Thread.Sleep(2000);
+            System.Threading.Thread.Sleep(1500);
             Console.Clear();
             return false;
 
@@ -104,34 +103,64 @@ class Program
     Console.WriteLine("");
     }
 
-    public static void MemorizeScripture(int _loopcount)
+    public static bool MemorizeScripture()
     {
         Console.Clear();
         Passage Passage = new Passage();
         Scripture NewScripture2 = new Scripture();
         List<string> _scripture2 = NewScripture2.GetScripture();
         
-        static bool FlagSet(int _loopcount)
+        static bool FlagSet(Word ScriptureWord)
         {
-            if (_loopcount < 25)
-            {
-                return true;
-            }
+            bool _flag = ScriptureWord.CheckFlag();
+            
+            
+            Random _r = new Random();
+            int _random = _r.Next(0,3);
 
-            else if (_loopcount <= 60)
+            switch (_random)
             {
+                case 0:
+                if (_flag == true)
+                {
+                return true;
+                }
+                else
+                {
+                    return false;
+                }            
+                
+                case 1:
+                if (_flag == true)
+                {
+                return true;
+                }
+                else
+                {
+                    return false;
+                }
+                case 2:
+                if (_flag == true)
+                {
                 return false;
-            }
-            return false;
+                }
+                else
+                {
+                    return false;
+                }
+                default:
+                return false;
+                    
+            }        
+            
+            
         }
 
         for (int i = 0; i < _scripture2.Count(); i++)
         {
-            bool _flag = FlagSet(_loopcount);
             string word = _scripture2[i];
-            Word ScriptureWord = new Word(word, _flag);
+            Word ScriptureWord = new Word(word, true);
             Passage.PassageAdd(ScriptureWord);
-            _loopcount++;
             
         }
 
@@ -141,10 +170,38 @@ class Program
         for (int i = 0; i < 27; i++)
         {
             Word _currentword = Passage.GetWordFromPassage(i);
+            bool _flag = FlagSet(_currentword);
+            _currentword.SetFlag(_flag);
             string _word = _currentword.GetWord();
             _passageWords.Add(_word);
 
             Console.Write($"{_passageWords[i]} ");
+
+        }
+        Console.WriteLine("");
+        Console.WriteLine("Press Enter to continue or type 'quit' to end the program");
+
+        ConsoleKeyInfo Keyinfo2 = Console.ReadKey();
+
+        if (Keyinfo2.Key == ConsoleKey.Enter)
+        {
+            Console.Clear();
+            for (int i = 0; i < 27; i++)
+            {
+                Word _currentword = Passage.GetWordFromPassage(i);
+                _currentword.SetFlag(false);
+                string _word = _currentword.GetWord();
+                
+
+                Console.Write($"{_word} ");
+
+            
+            }
+            return false;
+        }
+        else
+        {
+            return true;
         }
         
     }

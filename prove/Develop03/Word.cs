@@ -13,6 +13,11 @@ public class Word
         _flag = _setflag;
     }
 
+    public void SetFlag(bool _flag1)
+    {
+        _flag = _flag1;
+    }
+
     public bool CheckFlag()
     {
         return _flag;
