@@ -24,5 +24,38 @@ public class Passage
     public Word ReturnPassage(int i)
     {
         return _words[i];
+    }
+
+    public void SetFlag()
+    {
+        foreach (Word word in _words)
+        {
+            Random _r = new Random();
+            int i = _r.Next(0,3);
+            bool _flagValue = word.CheckFlag();
+            if (_flagValue == true)
+            {
+                switch (i)
+                {
+                    case 0:
+                    word.SetFlag(true);
+                    break;
+
+                    case 1:
+                    word.SetFlag(true);
+                    break;
+
+                    case 2:
+                    word.SetFlag(false);
+                    break;
+                }   
+            
+            }
+            else
+            {
+                word.SetFlag(false);
+            }
+
+        }
     }    
 }

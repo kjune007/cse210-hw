@@ -109,52 +109,7 @@ class Program
         Passage Passage = new Passage();
         Scripture NewScripture2 = new Scripture();
         List<string> _scripture2 = NewScripture2.GetScripture();
-        
-        static bool FlagSet(Word ScriptureWord)
-        {
-            bool _flag = ScriptureWord.CheckFlag();
-            
-            
-            Random _r = new Random();
-            int _random = _r.Next(0,3);
 
-            switch (_random)
-            {
-                case 0:
-                if (_flag == true)
-                {
-                return true;
-                }
-                else
-                {
-                    return false;
-                }            
-                
-                case 1:
-                if (_flag == true)
-                {
-                return true;
-                }
-                else
-                {
-                    return false;
-                }
-                case 2:
-                if (_flag == true)
-                {
-                return false;
-                }
-                else
-                {
-                    return false;
-                }
-                default:
-                return false;
-                    
-            }        
-            
-            
-        }
 
         for (int i = 0; i < _scripture2.Count(); i++)
         {
@@ -164,45 +119,44 @@ class Program
             
         }
 
-        
-        List<string> _passageWords = new List<string>();
-        
-        for (int i = 0; i < 27; i++)
+        for (int j = 0; j < 27; j++)
         {
-            Word _currentword = Passage.GetWordFromPassage(i);
-            bool _flag = FlagSet(_currentword);
-            _currentword.SetFlag(_flag);
-            string _word = _currentword.GetWord();
-            _passageWords.Add(_word);
-
-            Console.Write($"{_passageWords[i]} ");
-
+            Word word1 = new Word();
+            word1 = Passage.GetWordFromPassage(j);
+            string _word = word1.GetWord();
+            Console.Write($"{_word} ");
         }
-        Console.WriteLine("");
-        Console.WriteLine("Press Enter to continue or type 'quit' to end the program");
 
-        ConsoleKeyInfo Keyinfo2 = Console.ReadKey();
-
-        if (Keyinfo2.Key == ConsoleKey.Enter)
+        string _j = ReadUserInput();
+        
+        while(_j == "1")
         {
             Console.Clear();
-            for (int i = 0; i < 27; i++)
+        
+
+            if (_j == "1")
             {
-                Word _currentword = Passage.GetWordFromPassage(i);
-                _currentword.SetFlag(false);
-                string _word = _currentword.GetWord();
+                Passage.SetFlag();
                 
-
-                Console.Write($"{_word} ");
-
-            
+                for (int j = 0; j < 27; j++)
+                {
+                    Word word1 = new Word();
+                    word1 = Passage.GetWordFromPassage(j);
+                    string _word = word1.GetWord();
+                    Console.Write($"{_word} ");
+                }
+                _j = ReadUserInput();
+                
             }
-            return false;
+            
+            else
+            {
+                return false;
+            }
         }
-        else
-        {
-            return true;
-        }
+        return false;
+
+
         
     }
 
