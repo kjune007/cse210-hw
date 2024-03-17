@@ -109,6 +109,9 @@ class Program
         Passage Passage = new Passage();
         Scripture NewScripture2 = new Scripture();
         List<string> _scripture2 = NewScripture2.GetScripture();
+        Reference NewReference = new Reference();
+        string _reference =  NewReference.GetReference();
+        Console.Write($"{_reference}: -- ");
 
 
         for (int i = 0; i < _scripture2.Count(); i++)
@@ -132,6 +135,10 @@ class Program
         while(_j == "1")
         {
             Console.Clear();
+
+            Reference NewReference1 = new Reference();
+            string _reference1 =  NewReference.GetReference();
+            Console.Write($"{_reference}: -- ");
         
 
             if (_j == "1")
