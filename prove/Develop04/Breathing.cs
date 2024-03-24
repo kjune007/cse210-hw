@@ -29,9 +29,6 @@ public class Breathing:Activity
 
         }
 
-        Console.WriteLine("Well Done!");
-        Thread.Sleep(1500);
-        Console.Clear();
     }
 
 }

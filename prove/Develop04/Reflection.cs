@@ -1,13 +1,13 @@
 public class Reflection:Activity
 {
-    protected List<string>_prompts = new List<string>
+    private List<string>_prompts = new List<string>
     {
         "Think of a time when you stood up for someone else.",
         "Think of a time when you did something really difficult.",
         "Think of a time when you helped someone in need.",
         "Think of a time when you did something truly selfless."
     };
-    protected List<string> _questions = new List<string>
+    private List<string> _questions = new List<string>
     {
         "Why was this experience meaningful to you?",
         "Have you ever done anything like this before?",
@@ -45,54 +45,38 @@ public class Reflection:Activity
 
         if(keyInfo.Key == ConsoleKey.Enter)
         {
+            DateTime startTime = DateTime.Now;
+            DateTime futureTime = startTime.AddSeconds(_duration);
+
+            
             Console.Write("You may begin in a moment...  ");
             Pause();
             Console.Clear();
-            Random Random2 = new Random();
-            int _randomQuestion = Random2.Next(0,9);
-            string _currentQuestion = _questions[_randomQuestion];
-            Console.Write($"--- {_currentQuestion} ---  ");
-            float _timePerQuestion = _duration / 3;
-            for(int i = 0; i < _timePerQuestion; i++)
+
+            DateTime currentTime = DateTime.Now;
+            while (currentTime < futureTime)
             {
+                Random Random2 = new Random();
+                int _randomQuestion = Random2.Next(0,9);
+                string _currentQuestion = _questions[_randomQuestion];
+                Console.Write($"--- {_currentQuestion} ---  ");
                 Pause();
+                Console.WriteLine("");
+                Console.WriteLine("");
+
+                currentTime = DateTime.Now;
+
             }
-
+            
             Console.WriteLine("");
             Console.WriteLine("");
-
-            Random Random3 = new Random();
-            int _randomQuestion2 = Random3.Next(0,9);
-            string _currentQuestion2 = _questions[_randomQuestion2];
-            Console.Write($"--- {_currentQuestion2} ---  ");
-            for(int i = 0; i < _timePerQuestion; i++)
-            {
-                Pause();
-            }
-
-            Console.WriteLine("");
-            Console.WriteLine("");
-
-            Random Random4 = new Random();
-            int _randomQuestion3 = Random4.Next(0,9);
-            string _currentQuestion3 = _questions[_randomQuestion3];
-            Console.Write($"--- {_currentQuestion3} ---  ");
-            for(int i = 0; i < _timePerQuestion; i++)
-            {
-                Pause();
-            }
-
-
-            Console.WriteLine("Well Done!");
-
 
         }
         else
         {
 
         }
-        Thread.Sleep(1500);
-        Console.Clear();
+
     }
 
 }

@@ -77,4 +77,12 @@ public class Activity
 
 
     }
+
+    public void EndMessage()
+    {
+        Console.WriteLine("");
+        Console.WriteLine("Well Done!");
+        Thread.Sleep(2000);
+        Console.Clear();
+    }
 }
