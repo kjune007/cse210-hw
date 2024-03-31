@@ -2,29 +2,28 @@ public class Eternal:Goal
 {
 
     protected bool _complete = false;
+    int _timesCompleted = 0;
     public Eternal(string name, int points, bool end): base(name, points, end)
     {
     }
-    public override void GetStatus()
+    public override bool GetStatus()
     {
-        throw new NotImplementedException();
+        return _complete;
     }
 
-    public void SetGoal(int _points, string _name)
+        public override int ReturnPoints()
     {
-        _pointValue  = _points;
-        _goalName = _name;
-        _ending = false;
-        _complete = false;
+        return _pointValue * _timesCompleted;
     }
 
     public override string SaveString()
     {
-        return $"[]--{_goalName}--{_pointValue}"; 
+        return $"[{_timesCompleted}]--{_goalName}--{_pointValue}"; 
     }
 
     public override void MarkComplete()
     {
         _complete = false;
+        _timesCompleted ++;
     }
 }

@@ -13,7 +13,6 @@ class Program
     }       
     public static bool MainMenu(Goals GoalList)
     {
-        //Goals GoalList = new Goals();
         Console.WriteLine("");
         Console.WriteLine("Please Select a menu option:");
         Console.WriteLine("");
@@ -29,21 +28,25 @@ class Program
         {
             case "1":
             {
+                GoalList.Load();
                 return true;
             }
             case "2":
             {
                 GoalList.Save();
+                Thread.Sleep(1500);
+                Console.Clear();
                 return true;
             }
             case "3":
             {
                 GoalList.NewGoal();
+                Console.Clear();
                 return true;
             }
             case "4":
             {
-                GoalList.MarkComplete();
+                GoalList.MarkDone();
                 return true;
             }
             case "5":
@@ -53,6 +56,9 @@ class Program
             }
             case "0":
             {
+                Console.WriteLine("Terminating Program");
+                Thread.Sleep(1500);
+                Console.Clear();
                 return false;
             }
             default:

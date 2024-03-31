@@ -19,9 +19,11 @@ public abstract class Goal
         return _goalName;
     }
 
+    public abstract int ReturnPoints();
+
     public abstract string  SaveString();
 
-    public abstract void GetStatus();
+    public abstract bool GetStatus();
 
     public abstract void MarkComplete();
 

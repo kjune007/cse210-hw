@@ -7,22 +7,33 @@ public class Checklist:Goal
     {
         _HowManyTimes = _timesToComplete;
     }
-    public override void GetStatus()
+    public override bool GetStatus()
     {
-        throw new NotImplementedException();
+        return _complete;
     }
 
-    public void SetGoal(int _points, string _name, int _HowManyTimes2)
+        public override int ReturnPoints()
     {
-        _pointValue  = _points;
-        _goalName = _name;
-        _HowManyTimes = _HowManyTimes2;
+        if (_complete == true)
+        {
+            return _pointValue * _timesCompleted + 100;
+        }
+        else
+        {
+            return _pointValue * _timesCompleted;
+        }
     }
 
     public override string SaveString()
     {
-        return $"{_goalName}--{_pointValue}--{_timesCompleted}/{_HowManyTimes}"; 
-        
+        if (_HowManyTimes == _timesCompleted)
+        {
+            return $"[x]--{_goalName}--{_pointValue}"; 
+        }
+        else
+        {
+            return $"[ ]--{_goalName}--{_pointValue}--times completed: {_timesCompleted}/{_HowManyTimes}";
+        }
     }
 
     public override void MarkComplete()

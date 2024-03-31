@@ -1,9 +1,11 @@
 using System.Diagnostics.Contracts;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 
 public class Goals
 {
     private List<Goal> _goals = new List<Goal>();
+    private int _score = 0;
 
     public Goals()
     {
@@ -16,6 +18,25 @@ public class Goals
             string _string = goal.SaveString();
             Console.WriteLine($"{_string}");
         }
+    }
+
+    public void Load()
+    {
+        string _filename = "Goals.txt";
+        
+        
+        using (StreamReader read = new StreamReader(_filename))
+        {
+            string _readLine;
+            while ((_readLine = read.ReadLine()) != null)
+            {
+                string[] parts = _readLine.Split("--");
+            }
+        }
+        Console.WriteLine($"Goals loaded!");
+        Thread.Sleep(1500);
+            
+        
     }
 
     public void Save()
@@ -33,15 +54,15 @@ public class Goals
             }
             Console.WriteLine($"Goals Saved!");
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            Console.WriteLine($"Error occured while saving goals: {ex.Message}");
+            Console.WriteLine($"Error occured while saving goals:");
         }    
     }
 
-    public void MarkComplete()
+    public void MarkDone()
     {
-        Console.WriteLine("What goal did you comple?: ");
+        Console.WriteLine("What goal did you complete?: ");
         string goalName = Console.ReadLine(); 
         foreach (Goal goal in _goals)
         {
@@ -51,11 +72,18 @@ public class Goals
                 
             }
         }
+        for (int i = 0; i < _goals.Count(); i++)
+        {
+            _score += _goals[i].ReturnPoints();
+        }
+        Console.WriteLine($"You have {_score} points");
+
     }
     public void NewGoal()
     {
+        Console.Clear();
         Console.WriteLine("What type of Goal would you like to create?");
-        Console.WriteLine("");
+        Console.WriteLine();
         Console.WriteLine("Goal Options:");
         Console.WriteLine("1. Simple");
         Console.WriteLine("2. Checklist");

@@ -5,18 +5,23 @@ public class Simple:Goal
     {
         
     }
-    public override void GetStatus()
+    public override bool GetStatus()
     {
-
+        return _complete;
     }
 
-    public void SetGoal(int _points, string _name)
+    public override int ReturnPoints()
     {
-        _pointValue  = _points;
-        _goalName = _name;
-        _ending = true;
-        _complete = false;
+        if (_complete == true)
+        {
+            return _pointValue;
+        }
+        else
+        {
+            return 0;
+        }
     }
+
     public override string SaveString()
     {
         if (_complete == false)
@@ -34,5 +39,6 @@ public class Simple:Goal
     {
         _complete = true;
     }
+
 
 }
